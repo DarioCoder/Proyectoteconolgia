@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Darío Ferre Gálvez</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>
+      <strong>
+        <p class="enano">
+          Buenas, me llamo Darío y estudio en el coleigo montepinar el curso de
+          tercero de la ESO.
+        </p>
+      </strong>
+    </h2>
+    <h3>
+      <strong> <p class="normal">HOBBIES</p></strong>
+
+      <ul>
+        <li>Hacer deporte</li>
+        <li>Jugar videojuegos</li>
+        <li>Salir a jugar con mis amigos</li>
+      </ul>
+
+      <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank"
+        >Youtube, mi página favorita</a
+      >
+    </h3>
+
+    <div class="container">
+      <div class="card">
+        <img class="foto" />
+        <p class="nombre"></p>
+        <button onclick="proyecto()">PÚLSAME</button>
+      </div>
+    </div>
+    <script>
+      const proyecto = () => {
+        fetch("https://x-colors.yurace.pro/api/random", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(`https://singlecolorimage.com/get/${data.hex.slice(1)}/100x100`);
+            document.querySelector(
+              ".foto"
+            ).src = `https://singlecolorimage.com/get/${data.hex.slice(
+              1
+            )}/100x100`;
+            document.querySelector(
+              ".nombre"
+            ).innerHTML = `Color: ${data.hsl} ${data.rgb} ${data.hex}`;
+            document.querySelector(".nombre").style.color = data.hex;
+          });
+      };
+    </script>
+  </body>
+</html>
